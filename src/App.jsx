@@ -54,6 +54,7 @@ const App = () => {
         placeholder="Enter password..."
         value={password}
         ref={passwordRef}
+        readOnly={true}
         className="px-7 py-3 w-200 !bg-gray-200 !text-black border-0 outline-0 rounded-lg"
       />
 

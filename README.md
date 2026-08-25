@@ -1,19 +1,86 @@
-# React + Vite
+# Password Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and lightweight password generator built with React and Vite. It allows users to generate secure random passwords, customize length, include numbers and special characters, copy the generated password, and save previous passwords.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Generate random passwords
+- Set password length using a range slider
+- Include numbers in the generated password
+- Include special characters in the generated password
+- Copy password to clipboard
+- Save generated passwords
+- Reset settings back to default
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React
+- Vite
+- Tailwind CSS
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Project Structure
 
-## Expanding the ESLint configuration
+```bash
+.
+├── public/
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+└── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+1. Clone the repository
+   ```bash
+   git clone <your-repository-url>
+   cd password-generator
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Start the development server
+   ```bash
+   npm run dev
+   ```
+
+4. Open the app in your browser at:
+   ```bash
+   http://localhost:5173
+   ```
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+## Scripts
+
+```bash
+npm run dev     # run development server
+npm run build   # create production build
+npm run preview # preview the production build
+npm run lint    # run ESLint checks
+```
+
+## Example
+
+This app generates passwords like:
+
+```bash
+mN7!xQp2
+P8#vLq91
+aK2@rT5!
+```
+
+
