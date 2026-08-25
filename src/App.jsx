@@ -7,42 +7,40 @@ const App = () => {
   const [isCharacterAllowed, setIsCharacterAllowed] = useState(false);
   const [savedPasswords, setSavedPasswords] = useState([]);
   const passwordRef = useRef();
-  
+
   console.log(length);
-  
+
   const generatePassword = () => {
+    let pass = "";
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-    let pass = ""
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-    if(isCharacterAllowed){
-      str += "+=!@#$%^&*"
+    if (isCharacterAllowed) {
+      str += "+=!@#$%^&*";
     }
 
-    if(isNumberAllowed){
-      str += "0123456789"
+    if (isNumberAllowed) {
+      str += "0123456789";
     }
 
-    for(let i=1; i<=length; i++){
-      let randomIndex = Math.floor(Math.random() * str.length)
-      let characterPicked = str.charAt(randomIndex)
-      pass += characterPicked
+    for (let i = 1; i <= length; i++) {
+      let randomIndex = Math.floor(Math.random() * str.length);
+      let characterPicked = str.charAt(randomIndex);
+      pass += characterPicked;
     }
     setPassword(pass);
 
     console.log(pass);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     generatePassword();
-  },[length, isNumberAllowed, isCharacterAllowed])
-
+  }, [length, isNumberAllowed, isCharacterAllowed]);
 
   const copyPasswordToClipBoard = () => {
-    navigator.clipboard.writeText(password)
-    passwordRef.current.select()
+    navigator.clipboard.writeText(password);
+    passwordRef.current.select();
     passwordRef.current.setSelectionRange(0, 100);
-  }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 mt-20 text-3xl">
@@ -70,40 +68,58 @@ const App = () => {
 
       {/* Checkboxes for Number Allowed and Character Allowed */}
       <label htmlFor="NumberAllowed">
-            <input id="NumberAllowed" type="checkbox" checked={isNumberAllowed} className="cursor-pointer" onChange={(e)=>setIsNumberAllowed(e.target.checked)}/>
-            Number Allowed
+        <input
+          id="NumberAllowed"
+          type="checkbox"
+          checked={isNumberAllowed}
+          className="cursor-pointer"
+          onChange={(e) => setIsNumberAllowed(e.target.checked)}
+        />
+        Number Allowed
       </label>
 
       <label htmlFor="CharacterAllowed">
-          <input id="CharacterAllowed" type="checkbox" checked={isCharacterAllowed} className="cursor-pointer" onChange={(e)=>setIsCharacterAllowed(e.target.checked)}/>
-          Character Allowed
+        <input
+          id="CharacterAllowed"
+          type="checkbox"
+          checked={isCharacterAllowed}
+          className="cursor-pointer"
+          onChange={(e) => setIsCharacterAllowed(e.target.checked)}
+        />
+        Character Allowed
       </label>
 
       {/* Copy Password */}
-      <button className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer" onClick={copyPasswordToClipBoard}>
+      <button
+        className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer"
+        onClick={copyPasswordToClipBoard}
+      >
         Copy Password
       </button>
-      
+
       {/* Save Password */}
-      <button className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer" onClick={()=>setSavedPasswords([...savedPasswords, password])}>
+      <button
+        className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer"
+        onClick={() => setSavedPasswords([...savedPasswords, password])}
+      >
         Save Password
       </button>
 
-        {/* Reset Password */}
-      <button className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer" onClick={(e)=>{
-        setLength(8);
-        setIsNumberAllowed(false);
-        setIsCharacterAllowed(false);
-      }}>
+      {/* Reset Password */}
+      <button
+        className="!bg-blue-400 py-3 px-7 !text-black rounded-lg w-200 font-medium cursor-pointer"
+        onClick={(e) => {
+          setLength(8);
+          setIsNumberAllowed(false);
+          setIsCharacterAllowed(false);
+        }}
+      >
         Reset Password
       </button>
 
-        {
-          savedPasswords.map((item, index)=>(
-            <p key={`${item}-${index}`}>{item}</p>
-          ))
-        }
-
+      {savedPasswords.map((item, index) => (
+        <p key={`${item}-${index}`}>{item}</p>
+      ))}
     </div>
   );
 };
